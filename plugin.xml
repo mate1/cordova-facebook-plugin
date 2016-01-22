@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-facebook-plugin" version="1.0.0">
+    <name>Facebook Connect</name>
+
+    <description>
+      This is the official Facebook SDK 4 plugin for Apache Cordova!
+      
+      The Facebook SDK 4 plugin for Apache Cordova allows you to use the same JavaScript
+      code in your Cordova application as you use in your web application.
+      Docs: https://github.com/Mate1/cordova-facebook-plugin.
+    </description>
+
+    <license>Apache 2.0</license>
+
+    <engines>
+        <!-- Requires > 3.3.* because of the custom Framework tag for iOS [CB-5238] -->
+        <!-- Requires > 3.5.0 because of the custom Framework tag for Android [CB-6698] -->
+        <engine name="cordova" version=">=3.5.0" />
+    </engines>
+
+    <!-- JavaScript interface -->
+    <js-module src="www/facebookConnectPlugin.js" name="FacebookConnectPlugin">
+        <clobbers target="facebookConnectPlugin" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="FacebookConnectPlugin">
+                <param name="android-package" value="org.apache.cordova.facebook.ConnectPlugin" />
+            </feature>
+            <access origin="https://m.facebook.com" />
+            <access origin="https://graph.facebook.com" />
+            <access origin="https://api.facebook.com" />
+            <access origin="https://*.fbcdn.net" />
+            <access origin="https://*.akamaihd.net" />
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="application">
+            <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/fb_app_id"/>
+            <activity android:name="com.facebook.FacebookActivity" android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:label="@string/app_name" />
+        </config-file>
+
+        <!-- Facebook framework -->
+        <framework src="lib/android/FacebookSDK" custom="true" />
+
+        <source-file src="src/android/org/apache/cordova/facebook/ConnectPlugin.java" target-dir="src/org/apache/cordova/facebook" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="FacebookConnectPlugin">
+                <param name="ios-package" value="FacebookConnectPlugin"/>
+                <param name="onload" value="true" />
+            </feature>
+            <plugin name="FacebookConnectPlugin" value="FacebookConnectPlugin"/>
+            <access origin="https://m.facebook.com" />
+            <access origin="https://graph.facebook.com" />
+            <access origin="https://api.facebook.com" />
+            <access origin="https://*.fbcdn.net" />
+            <access origin="https://*.akamaihd.net" />
+        </config-file>
+
+        <header-file src="src/ios/FacebookConnectPlugin.h" />
+        <source-file src="src/ios/FacebookConnectPlugin.m" />
+        <resource-file src="lib/ios/FacebookSDKStrings.bundle" />
+
+        <!-- Facebook framework -->
+        <framework src="lib/ios/FBSDKCoreKit.framework" custom="true" />
+        <framework src="lib/ios/FBSDKLoginKit.framework" custom="true" />
+        <framework src="lib/ios/FBSDKShareKit.framework" custom="true" />
+
+        <!-- System frameworks -->
+        <framework src="libsqlite3.dylib" />
+        <framework src="Social.framework" weak="true" />
+        <framework src="Accounts.framework" weak="true" />
+        <framework src="Security.framework" weak="true" />
+    </platform>
+
+    <!-- browser -->
+    <platform name="browser">
+        <config-file target="config.xml" parent="/*">
+            <feature name="FacebookConnectPlugin">
+                <param name="browser-package" value="FacebookConnectPlugin"/>
+                <param name="onload" value="true" />
+            </feature>
+            <plugin name="FacebookConnectPlugin" value="FacebookConnectPlugin"/>
+            <access origin="https://m.facebook.com" />
+            <access origin="https://graph.facebook.com" />
+            <access origin="https://api.facebook.com" />
+            <access origin="https://*.fbcdn.net" />
+            <access origin="https://*.akamaihd.net" />
+        </config-file>
+    </platform>
+</plugin>

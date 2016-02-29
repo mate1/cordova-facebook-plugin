@@ -453,14 +453,13 @@
                 accessToken.tokenString, @"accessToken",
                 accessToken.declinedPermissions, @"declinedPermissions",
                 [NSString stringWithFormat:@"%0.0f", MAX([accessToken.expirationDate timeIntervalSinceNow],0)], @"expiresIn",
-                accessToken.isExpired, @"isExpired",
-                accessToken.lastRefresh, @"lastRefresh",
+                accessToken.refreshDate, @"lastRefresh",
                 accessToken.permissions, @"permissions",
                 accessToken.userID, @"userID",
                 nil
             ];
 
-            return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@statusDict];
+            return [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:statusDict];
         }
         @catch (NSException *e) {
             return [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString: @"No valid access token found."];

@@ -385,7 +385,7 @@
     NSLog(@"Graph Path = %@", self.graphPath);
     
     NSArray *pairs = [self.graphPath componentsSeparatedByString:@"?"];
-    NSDictionary *params = [self parseURLParams:[pairs[1] query]];
+    NSDictionary *params = [self parseURLParams:pairs[1]];
     
     FBSDKGraphRequestConnection *conn = [[FBSDKGraphRequestConnection alloc] init];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath: pairs[0] parameters: params];
@@ -445,16 +445,16 @@
     }
 }
 
-- (NSDictionary *)accessTokenResponse {
+- (CDVPluginResult *)accessTokenResponse {
     FBSDKAccessToken *accessToken = [FBSDKAccessToken currentAccessToken];
     if (accessToken != nil && [accessToken.expirationDate compare:[NSDate date]] > 0) {
         @try {
             NSDictionary *statusDict = [NSDictionary dictionaryWithObjectsAndKeys:
                 accessToken.tokenString, @"accessToken",
-                accessToken.declinedPermissions, @"declinedPermissions",
-                [NSString stringWithFormat:@"%0.0f", MAX([accessToken.expirationDate timeIntervalSinceNow],0)], @"expiresIn",
-                accessToken.refreshDate, @"lastRefresh",
-                accessToken.permissions, @"permissions",
+                [accessToken.declinedPermissions allObjects], @"declinedPermissions",
+                [NSString stringWithFormat:@"%f", MAX([accessToken.expirationDate timeIntervalSinceNow],0)], @"expiresIn",
+                [NSString stringWithFormat:@"%f", [accessToken.refreshDate timeIntervalSince1970]], @"lastRefresh",
+                [accessToken.permissions allObjects], @"permissions",
                 accessToken.userID, @"userID",
                 nil
             ];

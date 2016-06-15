@@ -6,10 +6,10 @@ The Facebook plugin for [Apache Cordova](http://incubator.apache.org/cordova/) a
 JavaScript code in your Cordova application as you use in your web application. However, unlike in the
 browser, the Cordova application will use the native Facebook app to perform the operations.
 
-* Supports Cordova v3.5.0 to v5.4.1 (for Cordova CLI v6.x.x, use the cordova_6 branch).
+* Supports Cordova CLI v6.x.x.
 * Uses Facebook Android &amp; iOS SDK 4.5.1
 
-This plugin was tested on Android with Apache Cordova 4.1.2.
+This plugin was tested on Cordova Android v5.1.1.
 
 For more information see the [Troubleshooting Guide/FAQ](TROUBLESHOOTING.md).
 

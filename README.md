@@ -44,7 +44,7 @@ For **iOS**, add the following to your app's plist:
 To install this plugin inside your app, simply execute the following command from within your app's
 `cordova` directory:
 
-`cordova plugin add https://github.com/mate1/cordova-facebook-plugin.git`
+`cordova plugin add https://github.com/mate1/cordova-facebook-plugin.git#cordova_6`
 
 Then you will need to add calls to initialize Facebook's SDK within your app.
 

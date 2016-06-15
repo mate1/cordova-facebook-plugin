@@ -42,7 +42,7 @@
         </config-file>
 
         <!-- Facebook framework -->
-        <framework src="lib/android/FacebookSDK" custom="true" />
+        <framework src="com.facebook.android:facebook-android-sdk:4.5.+"/>
 
         <source-file src="src/android/org/apache/cordova/facebook/ConnectPlugin.java" target-dir="src/org/apache/cordova/facebook" />
     </platform>
